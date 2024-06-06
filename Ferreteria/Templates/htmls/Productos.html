@@ -1,0 +1,43 @@
+{% extends 'htmls/layout.html' %}
+
+{% block content %}
+
+<main>
+  {% load static %}
+  <div class="container ">
+    <center>
+      <h1>Nuestra Coleccion</h1>
+      <hr>
+      <div class="container">
+        <div class="row">
+
+          <!-- --------------------------------------------------------------- -->
+          <div class="col-6">
+            <div class="card " style="width: 25rem; border: none;">
+              <div class="container borde2 ">
+                <a href="">
+                  <center>
+                    <a href="{% url 'Prod_1' %}">
+                      <img src="{% static 'img/img_1.jpg' %}" class="card-img-top cardObras" alt="Herramientas 1">
+                    </a>
+                  </center>
+                </a>
+              </div>
+              <div class="card-body ">
+                <h5 class="card-title">Juego de dados de 7 piezas</h5>
+                <p class="card-text">$20.000</p>
+                <a href="{% url 'Prod_1' %}" class="btn btn-light">Ver mas detalles</a>
+
+              </div>
+            </div>
+          </div>
+          <!-- ---------------------------------------------------------- -->
+
+        </div>
+
+      </div>
+    </center>
+  </div>
+</main>
+
+{% endblock %}

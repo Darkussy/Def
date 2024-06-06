@@ -1,0 +1,65 @@
+{% extends 'admin/layout_Admin.html' %}
+
+{% block content %}
+
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+    {% load static %}
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <!--aqui es donde van los botones que estan al costado de dashboard-->
+    </div>
+    <div class="container ">
+        <div>
+            <center>
+                <caption>
+                    <h3>Listado de Productos en la tienda </h3>
+                </caption>
+            </center>
+            <table class="table">
+                <tr>
+                    <th>
+                        <center>
+                            <a href="{%url 'Registrar' %}" class="btn btn-primary">Registrar Producto</a>
+                        </center>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Id Producto</th>
+                    <th>Codigo_Producto </th>
+                    <th>Marca</th>
+                    <th>Codigo</th>
+                    <th>precio</th>
+                    <th>Stock</th>
+                    <th>Categoria</th>
+                    <th>Acción</th>
+                </tr>
+                {% for p in Productos %}
+                <tr>
+                    <td>{{p.idProducto}}</td>
+                    <td>{{p.Codigo_Producto}}</td>
+                    <td>{{p.Marca}}</td>
+                    <td>{{p.Codigo}}</td>
+                    <td>{{p.precio}}</td>
+                    <td>{{p.Stock}}</td>
+                    <td>{{p.Tipo_Producto}}</td>
+                    <td>
+                        <a href="{% url 'Modificar' p.idProducto %}" class="btn btn-primary">Modificar</a>
+                        <!--  -->
+                        <a href="{% url 'delete_Producto' p.idProducto %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+    </div>
+
+
+</main>
+
+{% endblock %}
