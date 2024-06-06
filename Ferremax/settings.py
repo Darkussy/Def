@@ -58,7 +58,7 @@ ROOT_URLCONF = 'Ferremax.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,4 +132,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'Ferreteria/Static'),
 )
 
-ALLOWED_HOSTS = ['localhost','web-production-6364.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','web-production-6364.up.railway.app']
