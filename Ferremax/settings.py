@@ -61,7 +61,7 @@ ROOT_URLCONF = 'Ferremax.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +140,5 @@ STATIC_ROOT = os.path.join(BASE_DIR,'Staticfiles')
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','web-production-6364.up.railway.app']
+
+#CSRF_TRUSTED_ORIGINS=['web-production-6364.up.railway.app']
