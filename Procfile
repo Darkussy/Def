@@ -1,4 +1,1 @@
-web:
-    commands:
-      - python manage.py collectstatic
-      - gunicorn Ferremax.wsgi
+web: python manage.py collectstatic && gunicorn Ferremax.wsgi
