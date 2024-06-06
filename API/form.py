@@ -35,31 +35,31 @@ class ProductoForm(ModelForm):
         widgets={
                 'Codigo_Producto':forms.TextInput(
                     attrs={
-                        'placeholder':'Debe ingresar nombre del tipo de produto',
+                        'placeholder':'Debe ingresar codigo del produto',
                         'class':'form-control'
                         }
                     ),
                 'Marca':forms.TextInput(
                     attrs={
-                        'placeholder':'Debe ingresar precio',
+                        'placeholder':'Debe ingresar marca',
                         'class':'form-control'
                         }
                     ),
                 'Codigo':forms.TextInput(
                     attrs={
-                        'placeholder':'Debe ingresar Stock',
+                        'placeholder':'Debe ingresar codigo',
                         'class':'form-control',
                         }
                     ),
                 'Nombre':forms.TextInput(
                     attrs={
-                        'placeholder':'Debe ingresar Stock',
+                        'placeholder':'Debe ingresar nombre',
                         'class':'form-control',
                         }
                     ),
                 'precio':forms.TextInput(
                     attrs={
-                        'placeholder':'Debe ingresar Stock',
+                        'placeholder':'Debe ingresar precio en dolares',
                         'class':'form-control',
                         'type':'number'
                         }

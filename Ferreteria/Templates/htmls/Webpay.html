@@ -1,0 +1,24 @@
+{% extends 'htmls/layout.html' %}
+
+{% block content %}
+
+<main>
+  {% load static %}
+  <div class="container">
+
+
+    <h1>Resultado de la Transacción</h1>
+
+    <p><strong>Estado:</strong> {{ status }}</p>
+    <p><strong>Monto:</strong> {{ amount }}</p>
+    <p><strong>Orden de Compra:</strong> {{ buy_order }}</p>
+
+      <button>
+        <a href="{% url 'Index' %}" class="btn btn-light">Volver</a>
+
+      </button>
+
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+
+{% extends 'htmls/layout.html' %}
+
+{% block content %}
+
+<main>
+    {% load static %}
+    <div class="container">
+
+        <div>
+            <form action="{% url 'pago' %}" method="post">
+                {% csrf_token %}
+                <h1>Pago</h1>
+                <p><strong>N. orden: </strong><span>7004545</span></p>
+                <input type="hidden" name="ordenCompra" value="7004545">
+                <p><strong>Sesión: </strong><span>998877</span></p>
+                <input type="hidden" name="idSesion" value="998877">
+                <p><strong>Precio: </strong><span id="pesos">{{ precio }}</span></p>
+                <input type="hidden" name="monto" value="{{ precio }}">
+                <button type="submit">Verificar</button>
+            </form>
+            {% if url and token %}
+            <form method="post" action="{{ url }}">
+                {% csrf_token %}
+                <input type="hidden" name="token_ws" value="{{ token }}" />
+                <input type="submit" value="Ir a pagar" />
+            </form>
+            {% endif %}
+
+
+            <!-- 
+            <div>
+                <h2>Response:</h2>
+                <pre>{{ response|safe }}</pre>
+            </div>
+         -->
+
+            <div style="display: none;">
+                <h2>Response:</h2>
+                <pre>{{ response|safe }}</pre>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

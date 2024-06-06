@@ -30,11 +30,37 @@
                 <li class="nav-item">
                     <a class="nav-link " href="{% url 'Admin' %}">Admin</a>
                 </li>
-            </ul>
+                <li class="nav-item">
+                    <a class="btn btn-link no-underline" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                        role="button" aria-controls="offcanvasExample">
+                        Carrito
+                    </a>
+                </li>
+            </ul>c
         </div>
     </header>
 
     <body>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    Aqui estan tus productos elegidos
+                </div>
+                <form action="{% url 'Pagar' %}" method="post">
+                    {% csrf_token %}
+                    <label for="valor">Ingresa un valor:</label>
+                    <input type="number" id="valor" name="valor">
+                    <button type="submit">Enviar</button>
+                </form>
+
+            </div>
+        </div>
+
         {% block content %}
 
         {% endblock %}
