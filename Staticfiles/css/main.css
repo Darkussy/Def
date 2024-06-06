@@ -1,0 +1,23 @@
+.tamañocarrusel{
+    width: 50rem;
+    height: auto;
+}
+
+
+.borde2{
+    border: none;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardObras {
+    max-width: 100%;
+    height: auto;
+}
+/* tamaño del logo */
+.f_logo{
+    width: 187px;
+    height: 50px;
+}

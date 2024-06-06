@@ -133,8 +133,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'Ferreteria/Static'),
 )
 
-STATICFILES_ROOT = (
-    os.path.join(BASE_DIR,'Staticfiles'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR,'Staticfiles')
+
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','web-production-6364.up.railway.app']
