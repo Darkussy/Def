@@ -4,7 +4,7 @@ from API.form import ProductoForm
 # Create your views here.
 
 def Index(request):
-    return render(request,'htmls/Index.html')
+    return render(request,'Templates/htmls/Index.html')
 
 def Productos(request):
     return render(request,'htmls/Productos.html')
