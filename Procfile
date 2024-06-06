@@ -1,1 +1,1 @@
-web: gunicorn Ferremax.wsgi
+web:python manage.py collectstatics && gunicorn Ferremax.wsgi
