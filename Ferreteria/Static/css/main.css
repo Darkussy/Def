@@ -26,3 +26,11 @@
     text-decoration: none;
 }
 
+/* cambio la manera en que se ve el boton de inicio de sesion y registro */
+.linkmodal{
+    text-decoration: none;
+    color: aliceblue;
+}
+.btn-link{
+    text-decoration: none;
+}

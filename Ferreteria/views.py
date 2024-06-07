@@ -51,7 +51,10 @@ def Index(request):
     return render(request,'htmls/Index.html',{'valor': valor}  )
 
 def Productos(request):
-    return render(request,'htmls/Productos.html')
+    
+    Productos= Producto.objects.all()
+    return render(request,'htmls/Productos.html',{"Productos":Productos})
+
 
 def Prod_1(request):
     return render(request,'htmls/Prod_1.html')
