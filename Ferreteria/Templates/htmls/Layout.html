@@ -31,8 +31,8 @@
                     <a class="nav-link " href="{% url 'Admin' %}">Admin</a>
                 </li>
                 <li class="nav-item linkmodal">
-                    <a class="btn btn-link linkmodal" data-bs-toggle="offcanvas" href="#offcanvasExample"
-                        role="button" aria-controls="offcanvasExample">
+                    <a class="btn btn-link linkmodal" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                        aria-controls="offcanvasExample">
                         Carrito
                     </a>
                 </li>
@@ -51,36 +51,52 @@
                 <div>
                     Aqui estan tus productos elegidos
                 </div>
-                <form action="{% url 'Pagar' %}" method="post">
-                    {% csrf_token %}
-                    <label>valor del dolar: {{ valor }}
-                    </label><br>
-                    <label for="valor">Ingresa un valor:</label>
-                    <input type="number" id="valor" name="valor">
+                <div class="alert alert-primary" role="alert">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="row" colspan="3" class="text-center">CARRITO</th>
+                            </tr>
+                            <tr>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">PRECIO</th>
+                                <th scope="col">CANTIDAD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if request.session.carrito.items %}
+                            {% for key, value in request.session.carrito.items %}
+                            <tr>
+                                <td>{{value.nombre}}</td>
+                                <td>{{value.acumulado}}</td>
+                                <td>{{value.cantidad}}
+                                    <!--  -->
+                                    <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                                    <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
 
-                    <button type="submit">Enviar</button>
-
-                    <br>
-                    <table border="1">
-                        <tr>
-                            <th>Nombre Producto</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                        </tr>
-                        <tr>
-                            <td>Dato 1</td>
-                            <td>Dato 2</td>
-                            <td>Dato 3</td>
-                        </tr>
-                        <tr>
-                            <td>Dato 4</td>
-                            <td>Dato 5</td>
-                            <td>Dato 6</td>
-                        </tr>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="3">
+                                    <div class="alert alert-danger text-center"> Sin Productos </div>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th scope="row" colspan="3">Total del carrito {{total}} usd</th>
+                            </tr>
+                            
+                        </tbody>
                     </table>
+                    <hr>
+                </div>
+                <div class="row text-center">
+                    <div class="col-6"><a href="{% url 'CLS' %}" class="btn btn-danger">Limpiar</a></div>
+                    <div class="col-6"><a href="{% url 'Pagar' %}" class="btn btn-success">Pagar</a></div>
 
-
-                </form>
+                </div>
 
             </div>
         </div>

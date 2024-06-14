@@ -12,24 +12,20 @@
         <div class="row">
 
           {% for p in Productos %}
-          <div class="col-6">
+          <div class="col-4">
             <div class="card " style="width: 25rem; border: none;">
-              <div class="container borde2 ">
-                <a href="">
-                  <center>
-                    <!-- <img  src="{% static 'img/Huevo2.jpg' %}" class="card-img-top cardObras" alt="huevo 1"> 
-                    <img src="{{p.file.url}}" class="card-img-top cardObras" alt="huevo 1">-->
-                  </center>
-                </a>
-              </div>
+              
               <div class="card-body ">
                 <h5 class="card-title">{{p.Codigo_Producto}}</h5>
-                <p class="card-text">${{p.Marca}}</p>
-                <p class="card-text">${{p.Nombre}}</p>
+                <p class="card-text">{{p.Marca}}</p>
+                <p class="card-text">{{p.Nombre}}</p>
                 <p class="card-text">${{p.precio}}</p>
-                <p class="card-text">${{p.Stock}}</p>
-                <p class="card-text">${{p.Tipo_Producto}}</p>
-                
+                <p class="card-text">{{p.Stock}}</p>
+                <p class="card-text">{{p.Tipo_Producto}}</p>
+<!---->   
+
+                <a href="{% url 'Add' p.idProducto %}" class="btn btn-primary">Agregar al carrito</a>
+                                     
 
 
 

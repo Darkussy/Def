@@ -4,6 +4,10 @@ from API.models import Producto
 from API.form import ProductoForm
 from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions, IntegrationCommerceCodes, IntegrationApiKeys
 from transbank.common.integration_type import IntegrationType
+#import para el carrito
+from .context_processor import total_carrito
+from .Carrito import Carrito 
+import re
 
 # Create your views here.
 import requests
@@ -14,7 +18,7 @@ User='marc.lopezm@duocuc.cl'
 Pass='Datenryu7.'
 tipos=['Yen','Euro','Dolar']
 Codigos=['F072.CLP.JPY.N.O.D','F072.CLP.EUR.N.O.D','F073.TCO.PRE.Z.D']
-Cod='F072.CLP.EUR.N.O.D'
+Cod='F073.TCO.PRE.Z.D'
 Moneda=''
 
 
@@ -47,11 +51,9 @@ def convertir(a, b):
 
 
 def Index(request):
-    valor=Funcion_retorna()
-    return render(request,'htmls/Index.html',{'valor': valor}  )
+    return render(request,'htmls/Index.html' )
 
 def Productos(request):
-    
     Productos= Producto.objects.all()
     return render(request,'htmls/Productos.html',{"Productos":Productos})
 
@@ -94,10 +96,16 @@ def delete_Producto(request, id):
     Product = Producto.objects.get(idProducto=id)
     Product.delete()
     return redirect(to="Admin")
+#funcion para separar el numero de el string 
+def filtrar_numeros(cadena):
+    numeros = re.findall(r'\d+', cadena)
+    numeros_concatenados = ''.join(numeros)
+    return numeros_concatenados
 
 def Pagar(request):
+    total_carrito_str = total_carrito(request)
+    a = filtrar_numeros(str(total_carrito_str))
     b = Funcion_retorna()
-    a = request.POST["valor"]
     precio = convertir(a,b)
     return render(request,"htmls/Pagar.html", {'precio': precio})
 
@@ -132,7 +140,8 @@ def pago(request):
     buy_order = request.POST["ordenCompra"]
     session_id = request.POST["idSesion"]
     amount = request.POST["monto"]
-    return_url = 'http://127.0.0.1:8000/Pagar/procesar_pago'
+    #aqui se cambia cuando esta el tunel 
+    return_url = 'https://0r032ngw-8000.brs.devtunnels.ms//Pagar/procesar_pago'
 
     transaction = Transaction(WebpayOptions(
         IntegrationCommerceCodes.WEBPAY_PLUS, 
@@ -147,7 +156,34 @@ def pago(request):
     context = {
         'token': token,
         'url': url,
-        'response': response  # Agrega response al contexto
+        'response': response,  # Agrega response al contexto
+        'precio': amount
     }
     
     return render(request, 'htmls/Pagar.html', context)
+
+#views del carrito 
+
+def agregar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(idProducto=producto_id)
+    carrito.agregar(producto)
+    return redirect("Productos")
+
+def eliminar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(idProducto=producto_id)
+    carrito.eliminar(producto)
+    return redirect("Productos")
+
+def restar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(idProducto=producto_id)
+    carrito.restar(producto)
+    return redirect("Productos")
+
+def limpiar_carrito(request):
+    carrito = Carrito(request)
+    carrito.limpiar()
+    return redirect("Productos")
+
