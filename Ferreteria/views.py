@@ -61,7 +61,7 @@ def Productos(request):
 def Prod_1(request):
     return render(request,'htmls/Prod_1.html')
 
-def Admin(request):
+def Admin1(request):
     Productos= Producto.objects.all()
     return render(request,'admin/Index_Admin.html',{"Productos":Productos})
 
@@ -141,7 +141,7 @@ def pago(request):
     session_id = request.POST["idSesion"]
     amount = request.POST["monto"]
     #aqui se cambia cuando esta el tunel 
-    return_url = 'https://0r032ngw-8000.brs.devtunnels.ms//Pagar/procesar_pago'
+    return_url = 'http://127.0.0.1:8000/Pagar/procesar_pago'#'https://0r032ngw-8000.brs.devtunnels.ms//Pagar/procesar_pago'
 
     transaction = Transaction(WebpayOptions(
         IntegrationCommerceCodes.WEBPAY_PLUS, 
